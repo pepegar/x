@@ -22,6 +22,10 @@ type OTLPConfig struct {
 	Sampling  OTLPSampling `json:"sampling"`
 }
 
+type DataDogConfig struct {
+	ServerURL string `json:"server_url"`
+}
+
 type JaegerSampling struct {
 	ServerURL string `json:"server_url"`
 }
@@ -35,9 +39,10 @@ type OTLPSampling struct {
 }
 
 type ProvidersConfig struct {
-	Jaeger JaegerConfig `json:"jaeger"`
-	Zipkin ZipkinConfig `json:"zipkin"`
-	OTLP   OTLPConfig   `json:"otlp"`
+	Jaeger  JaegerConfig  `json:"jaeger"`
+	Zipkin  ZipkinConfig  `json:"zipkin"`
+	OTLP    OTLPConfig    `json:"otlp"`
+	DataDog DataDogConfig `json:"datadog"`
 }
 
 type Config struct {

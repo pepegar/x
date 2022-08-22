@@ -60,6 +60,14 @@ func (t *Tracer) setup(name string) error {
 
 		t.tracer = tracer
 		t.l.Infof("OTLP tracer configured! Sending spans to %s", t.Config.Providers.OTLP.ServerURL)
+	case f.AddCase("datadog"):
+		tracer, err := SetupDatadog(t, name)
+		if err != nil {
+			return err
+		}
+
+		t.tracer = tracer
+		t.l.Infof("DataDog tracer configured! Sending spans to %s", t.Config.Providers.DataDog.ServerURL)
 	case f.AddCase(""):
 		t.l.Infof("No tracer configured - skipping tracing setup")
 		t.tracer = trace.NewNoopTracerProvider().Tracer(name)
